@@ -1,46 +1,62 @@
-Palendrome finder 2
-    *
+// Brady Thomas
+
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+int main()
+{
     int digits = 0;
     int num = 0;
     int number = 0;
     int org_number = 0;
     int original = 0;
+	char choice = 'y';
 
-    cout << "Enter a value: ";
-    cin >> number;
 
-    org_number = number;
-    original = number;
-
-    while (number > 0)
+    while (choice != 'x' || choice != 'X')
     {
-        number = number / 10;
-        digits++;
-    }
-   
-    int most, least;
-    bool flag = true;
-    int i = 1;
+        cout << "Enter a value: ";
+        cin >> number;
 
-    for (i = 1; i <= digits / 2; i++)
-    {
-        least = org_number % 10;
-        most = org_number / (pow(10, digits - i));
+        org_number = number;
+        original = number;
 
-        org_number = org_number / 10;
-        i++;
-        org_number = org_number % (int)pow(10, digits - i);
-        if (least != most)
+        while (number > 0)
         {
-            flag = false;
-            break;
+            number = number / 10;
+            digits++;
         }
+
+        int most, least;
+        bool flag = true;
+        int i = 1;
+
+        for (i = 1; i <= digits / 2; i++)
+        {
+            least = org_number % 10;
+            most = org_number / (pow(10, digits - i));
+
+            org_number = org_number / 10;
+            i++;
+            org_number = org_number % (int)pow(10, digits - i);
+            if (least != most)
+            {
+                flag = false;
+                break;
+            }
+        }
+        if (flag)
+        {
+            cout << "The number " << original << " is a palindrome";
+        }
+        else
+        {
+            cout << "The number " << original << " is NOT a palindrome";
+        }
+
+		cout << "\n\nEnter 'x' to exit or any other key to continue: ";
+		cin >> choice;
     }
-    if (flag)
-    {
-        cout << "The number " << original << " is a palendrome";
-    }
-    else
-    {
-        cout << "The number " << original << " is NOT a palendrome";
-    }
+cout << "\nGoodbye!\n";
+}
